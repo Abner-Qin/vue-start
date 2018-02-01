@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>propsData Option Demo 全局扩展的数据传递</title>
+</head>
+<body>
+  <!-- 选项就是在Vue构造器里的配置功能的前缀（Vue已经定义好了）propsData 不是和属性有关，他用在全局扩展时进行传递数据,用propsData三步解决传值,propsData在实际开发中使用的并不多,在Vuex的应用中，他的作用就是在单页应用中保持状态和数据的。-->
+    <h1>propsData Option Demo 全局扩展的数据传递</h1>
+    <hr>
+    <header></header>
+    <script type="text/javascript">
+       var  header_a = Vue.extend({
+        // 3、用插值的形式写入模板。{{ a }}
+           template:'<p>{{message}}-{{a}}</p>',
+           data:function(){
+               return {
+                   message:'Hello ，I’m Header'
+               }
+           },
+           // 2、传递时用propsData进行传递。props:[‘a’]
+           props:['a']
+       });
+       new header_a({
+        // 1、在全局扩展里加入props进行接收。propsData:{a:1}
+           propsData:{
+               a:1
+           }
+       }).$mount('header');
+    </script>
+</body>
+</html>

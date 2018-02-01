@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery-3.1.1.min.js"></script>
+    <title>Early Examples Demo</title>
+</head>
+<body>
+    <!-- 实例就是在构造器外部操作构造器内部的属性选项或者方法，就叫做实例。实例的作用就是给原生的或者其他javascript框架一个融合的接口或者说是机会，让Vue和其他框架一起使用。如jquery -->
+    <h1>Early Examples Demo 和jquery一起使用</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:'hello Vue!'
+            },
+            //在Vue中使用jQuery
+            mounted:function(){
+                $('#app').html('我是jQuery!');
+            },
+            methods:{
+                add:function(){
+                    console.log("调用了Add方法");
+                }
+            }
+        
+        })
+        //打印app对象，看看里边都包含了什么属性和方法。
+        console.log(app);
+        app.add();
+    </script>
+</body>
+</html>

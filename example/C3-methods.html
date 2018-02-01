@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>Methods Option Demo</title>
+</head>
+<body>
+    <h1>Methods Option Demo</h1>
+    <hr>
+    <div id="app">
+       {{a}}
+       <p><button @click="add(2)">add</button></p>
+       <!-- 调用构造器里面的methods原始方法 -->
+       <p><btn @click.native="add(2)"></btn>
+       </p>
+       <!-- 传递的$event参数都是关于你点击鼠标的一些事件和属性。 -->
+       <!-- <button @click="add(2,$event)"">add</button> -->
+    </div>
+    <!-- 作用域外部调用构造器里的方法这种不经常使用，如果你出现了这种情况，说明你的代码组织不够好。 -->
+    <button onclick="app.add(3)">外部访问构造器里的方法</button>
+
+    <script type="text/javascript">
+       var btn={
+           template:'<button>外部组件</button>'
+       }
+
+
+        var app=new Vue({
+            el:'#app',
+            data:{
+                a:1
+            },
+            methods:{
+                add:function(num){
+                    
+                    return this.a+=num;
+                 }
+            },
+            components:{
+                "btn":btn
+            }
+        })
+    </script>
+</body>
+</html>
